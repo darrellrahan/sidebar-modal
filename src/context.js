@@ -1,22 +1,34 @@
 import React, { useContext, useState } from "react";
 
-const ModalContext = React.createContext();
+const GlobalContext = React.createContext();
 
-export function useModalContext() {
-  return useContext(ModalContext);
+export function useGlobalContext() {
+  return useContext(GlobalContext);
 }
 
-export function ModalProvider(prop) {
+export function AppProvider(prop) {
   const { children } = prop;
 
-  const [isShow, setIsShow] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowSidebar, setIsShowSidebar] = useState(false);
 
-  const open = () => setIsShow(true);
-  const close = () => setIsShow(false);
+  const openModal = () => setIsShowModal(true);
+  const closeModal = () => setIsShowModal(false);
+  const openSidebar = () => setIsShowSidebar(true);
+  const closeSidebar = () => setIsShowSidebar(false);
 
   return (
-    <ModalContext.Provider value={{ isShow, open, close }}>
+    <GlobalContext.Provider
+      value={{
+        isShowModal,
+        openModal,
+        closeModal,
+        isShowSidebar,
+        openSidebar,
+        closeSidebar,
+      }}
+    >
       {children}
-    </ModalContext.Provider>
+    </GlobalContext.Provider>
   );
 }

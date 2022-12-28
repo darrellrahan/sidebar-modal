@@ -1,14 +1,16 @@
 import React from "react";
 import Home from "./components/Home";
 import Modal from "./components/Modal";
-import { ModalProvider } from "./context";
+import Sidebar from "./components/Sidebar";
+import { AppProvider } from "./context";
 
 function App() {
   return (
-    <ModalProvider>
+    <AppProvider>
       <Home />
       <Modal />
-    </ModalProvider>
+      <Sidebar />
+    </AppProvider>
   );
 }
 
